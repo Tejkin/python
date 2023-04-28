@@ -10,8 +10,14 @@ def add_me_to_the_queue(express_queue, normal_queue, ticket_type, person_name):
     :param person_name: str - name of person to add to a queue.
     :return: list - the (updated) queue the name was added to.
     """
-
-    pass
+    
+    if ticket_type == 1:
+        express_queue.append(person_name)
+        return express_queue
+    if ticket_type == 0:
+        normal_queue.append(person_name)
+        return normal_queue
+    return "Invalid ticket type"
 
 
 def find_my_friend(queue, friend_name):
@@ -22,7 +28,10 @@ def find_my_friend(queue, friend_name):
     :return: int - index at which the friends name was found.
     """
 
-    pass
+    for i in range(len(queue)):
+        if queue[i].lower() == friend_name.lower():
+            return i
+    return "Name not in queue"
 
 
 def add_me_with_my_friends(queue, index, person_name):
@@ -33,8 +42,16 @@ def add_me_with_my_friends(queue, index, person_name):
     :param person_name: str - the name to add.
     :return: list - queue updated with new name.
     """
+    
+    i = len(queue)
+    queue.append("")
+    while i > index:
+        queue[i] = queue[i - 1]
+        i -= 1
 
-    pass
+    queue[index] = person_name
+    return queue
+
 
 
 def remove_the_mean_person(queue, person_name):
@@ -44,8 +61,11 @@ def remove_the_mean_person(queue, person_name):
     :param person_name: str - name of mean person.
     :return: list - queue update with the mean persons name removed.
     """
-
-    pass
+    for i in range(len(queue)):
+        if queue[i] == person_name:
+            queue.pop(i)
+            return queue
+    return "Person not in queue"
 
 
 def how_many_namefellows(queue, person_name):
@@ -55,8 +75,11 @@ def how_many_namefellows(queue, person_name):
     :param person_name: str - name you wish to count or track.
     :return: int - the number of times the name appears in the queue.
     """
-
-    pass
+    count = 0
+    for i in range(len(queue)):
+        if queue[i] == person_name:
+            count += 1
+    return count
 
 
 def remove_the_last_person(queue):
@@ -66,7 +89,7 @@ def remove_the_last_person(queue):
     :return: str - name that has been removed from the end of the queue.
     """
 
-    pass
+    return queue.pop(len(queue) - 1)
 
 
 def sorted_names(queue):
@@ -75,5 +98,5 @@ def sorted_names(queue):
     :param queue: list - names in the queue.
     :return: list - copy of the queue in alphabetical order.
     """
-
-    pass
+    queue.sort()
+    return queue
