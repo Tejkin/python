@@ -43,13 +43,7 @@ def add_me_with_my_friends(queue, index, person_name):
     :return: list - queue updated with new name.
     """
     
-    i = len(queue)
-    queue.append("")
-    while i > index:
-        queue[i] = queue[i - 1]
-        i -= 1
-
-    queue[index] = person_name
+    queue.insert(index, person_name)
     return queue
 
 
